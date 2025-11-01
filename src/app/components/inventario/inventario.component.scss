@@ -1,0 +1,64 @@
+.inventario-container {
+    padding: 20px;
+}
+
+h2 {
+    color: #333;
+    border-bottom: 2px solid #04AA6D;
+    padding-bottom: 10px;
+}
+
+.crud-actions {
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.action-btn {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.create-btn {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.edit-btn {
+    background-color: #2196F3;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.w3-table-all {
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2);
+}
+
+.w3-table-all th, .w3-table-all td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-header {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.w3-table-all tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.w3-table-all tr:hover {
+    background-color: #ddd;
+}

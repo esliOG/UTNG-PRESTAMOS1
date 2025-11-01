@@ -1,0 +1,46 @@
+<div class="navbar">
+    <a routerLink="/dashboard/inventario" class="active">Sistema de Préstamo UTNG</a>
+    <div class="dropdown">
+      <button class="dropbtn">Materiales 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a routerLink="/dashboard/inventario">Inventario (CRUD Demo)</a>
+        <a href="#">Alta de Herramienta</a>
+        <a href="#">Baja de Herramienta</a>
+        <a href="#">Clasificar Nuevo Material</a>
+        <a href="#">Etiquetar Ubicación</a>
+        <a href="#">Inventario Material Dañado</a>
+      </div>
+    </div> 
+    <div class="dropdown">
+        <button class="dropbtn">Reportes 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#">Buscar Material</a>
+          <a href="#">Buscar Material Prestado</a>
+          <a href="#">Reporte Devoluciones</a>
+          <a href="#">Herramientas Rotas</a>
+          <a href="#">Herramientas Dañadas</a>
+          <a href="#">Estadísticas</a>
+        </div>
+      </div> 
+      <div class="dropdown">
+        <button class="dropbtn">Administración 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#">Dar Acceso y Permisos</a>
+          <a href="#">Registrar Docente</a>
+        </div>
+      </div> 
+      <div class="navbar-right">
+        <a href="#">Perfil (Nombre, No. Control)</a>
+        <a routerLink="/login">Cerrar Sesión</a>
+    </div>
+</div>
+
+<div class="main-content">
+    <router-outlet></router-outlet>
+</div>
