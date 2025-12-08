@@ -1,11 +1,23 @@
 <div class="inventario-container">
     <h2>Inventario de Material</h2>
-    <p>Fecha</p>
+    <p>{{ getCurrentDate() }}</p>
+    
+    <!-- Mensaje de error -->
+    <div *ngIf="error" class="error-message">
+        {{ error }}
+    </div>
+    
+    <!-- Mensaje de carga -->
+    <div *ngIf="loading" class="loading-message">
+        Cargando...
+    </div>
     
     <div class="crud-actions">
-        <button class="action-btn create-btn">➕ Alta (Crear)</button>
+        <button class="action-btn create-btn" (click)="openCreateModal()">
+            ➕ Alta (Crear)
+        </button>
     </div>
-
+    
     <table class="w3-table-all">
         <thead>
             <tr class="table-header">
@@ -17,36 +29,82 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>101</td>
-                <td>Osciloscopio Digital</td>
-                <td>Electrónica</td>
-                <td>5</td>
+            <tr *ngFor="let material of materiales">
+                <td>{{ material.id }}</td>
+                <td>{{ material.nombre }}</td>
+                <td>{{ material.clasificacion }}</td>
+                <td>{{ material.cantidad }}</td>
                 <td>
-                    <button class="action-btn edit-btn">✎ Modificar</button>
-                    <button class="action-btn delete-btn">🗑️ Baja</button>
+                    <button class="action-btn edit-btn" (click)="openEditModal(material)">
+                        ✎ Modificar
+                    </button>
+                    <button class="action-btn delete-btn" (click)="deleteMaterial(material.id)">
+                        🗑️ Baja
+                    </button>
                 </td>
             </tr>
-            <tr>
-                <td>205</td>
-                <td>Multímetro Básico</td>
-                <td>Electrónica</td>
-                <td>20</td>
-                <td>
-                    <button class="action-btn edit-btn">✎ Modificar</button>
-                    <button class="action-btn delete-btn">🗑️ Baja</button>
-                </td>
-            </tr>
-            <tr>
-                <td>312</td>
-                <td>Kit de Arduino Uno</td>
-                <td>Programación</td>
-                <td>15</td>
-                <td>
-                    <button class="action-btn edit-btn">✎ Modificar</button>
-                    <button class="action-btn delete-btn">🗑️ Baja</button>
+            <tr *ngIf="materiales.length === 0 && !loading">
+                <td colspan="5" style="text-align: center;">
+                    No hay materiales registrados
                 </td>
             </tr>
         </tbody>
     </table>
+</div>
+
+<!-- Modal para Crear/Editar -->
+<div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>{{ isEditMode ? 'Modificar Material' : 'Crear Nuevo Material' }}</h3>
+            <button class="close-btn" (click)="closeModal()">✕</button>
+        </div>
+        
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                    <label for="nombre">Nombre del Material:</label>
+                    <input 
+                        type="text" 
+                        id="nombre" 
+                        [(ngModel)]="materialForm.nombre" 
+                        name="nombre"
+                        placeholder="Ej: Osciloscopio Digital"
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="clasificacion">Clasificación:</label>
+                    <input 
+                        type="text" 
+                        id="clasificacion" 
+                        [(ngModel)]="materialForm.clasificacion" 
+                        name="clasificacion"
+                        placeholder="Ej: Electrónica"
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="cantidad">Cantidad:</label>
+                    <input 
+                        type="number" 
+                        id="cantidad" 
+                        [(ngModel)]="materialForm.cantidad" 
+                        name="cantidad"
+                        min="0"
+                        required
+                    >
+                </div>
+            </form>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="btn-cancel" (click)="closeModal()">Cancelar</button>
+            <button class="btn-save" (click)="saveMaterial()">
+                {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+            </button>
+        </div>
+    </div>
 </div>
